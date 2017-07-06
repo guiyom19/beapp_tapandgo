@@ -1,0 +1,122 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+	<h1> Stations </h1>
+
+	
+	<form action="{{ path_for('stations') }}" method="post" class="column2 fl">
+
+		<h2>Ajouter une station</h2>
+
+		{% if flash.success %}
+			<div class="alert alert-success">
+				{{ flash.success }}
+			</div>
+		{% endif %}
+
+		{% if flash.error %}
+			<div class="alert alert-danger">
+				{{ flash.error }}
+			</div>
+		{% endif %}
+
+
+		{{ csrf() }}
+
+		<div class="form-group{% if flash.errors.city %} has-error{% endif %}">
+
+			<label for="city"> Ville </label>
+			<select class="form-control" name="city" id="city" required>
+				<option>Choisissez une ville</option>
+
+				{% for city in cities %}
+					<option value="{{ city.id }}">{{ city.name }}</option>
+				{% endfor %}
+
+			</select>
+
+
+			{% if flash.errors.city %}
+				<span class="help-block"> {{ flash.errors.city }} </span>
+			{% endif %}
+		</div>
+
+		<div class="form-group{% if flash.errors.name %} has-error{% endif %}">
+			<label for="name"> Nom de la station </label>
+			<input type="text" class="form-control" name="name" id="name" value="{{old.name}}" required>
+
+			{% if flash.errors.name %}
+				<span class="help-block"> {{ flash.errors.name }} </span>
+			{% endif %}
+		</div>
+
+		<div class="form-group{% if flash.errors.address %} has-error{% endif %}">
+			<label for="address"> Adresse </label>
+			<input type="text" class="form-control" name="address" id="address" value="{{old.address}}" required>
+
+			{% if flash.errors.address %}
+				<span class="help-block"> {{ flash.errors.address }} </span>
+			{% endif %}
+		</div>
+
+		<div class="form-group{% if flash.errors.description %} has-error{% endif %}">
+			<label for="description"> Description </label>
+			<input type="text" class="form-control" name="description" id="description" value="{{old.description}}">
+
+			{% if flash.errors.description %}
+				<span class="help-block"> {{ flash.errors.description }} </span>
+			{% endif %}
+		</div>
+
+		<div class="form-group{% if flash.errors.latitude %} has-error{% endif %}">
+			<label for="latitude"> Latitude </label>
+			<input type="number" class="form-control" name="latitude" id="latitude" value="{{old.latitude}}" step="0.01" required>
+			{% if flash.errors.latitude %}
+				<span class="help-block"> {{ flash.errors.latitude }} </span>
+			{% endif %}
+		</div>
+
+		<div class="form-group{% if flash.errors.longitude %} has-error{% endif %}">
+			<label for="longitude"> Longitude </label>
+			<input type="number" class="form-control" name="longitude" id="longitude" step="0.01" required>
+			{% if flash.errors.longitude %}
+				<span class="help-block"> {{ flash.errors.longitude }} </span>
+			{% endif %}
+		</div>
+
+		<div class="form-group{% if flash.errors.bikescapacity %} has-error{% endif %}">
+			<label for="bikescapacity"> Capacité de vélos </label>
+			<input type="number" class="form-control" name="bikescapacity" id="bikescapacity" value="{{old.bikescapacity}}" required>
+			{% if flash.errors.bikescapacity %}
+				<span class="help-block"> {{ flash.errors.bikescapacity }} </span>
+			{% endif %}
+		</div>
+
+		<div class="form-group{% if flash.errors.bikesavailable %} has-error{% endif %}">
+			<label for="bikesavailable"> Vélos disponibles </label>
+			<input type="number" class="form-control" name="bikesavailable" id="bikesavailable" required>
+			{% if flash.errors.bikesavailable %}
+				<span class="help-block"> {{ flash.errors.bikesavailable }} </span>
+			{% endif %}
+		</div>
+
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Ajouter">
+		</div>
+
+	</form>
+
+	<table class="column2 fr ">
+
+		{% for station in stations %}
+			<tr>
+				<th value="{{ city.id }}">{{ station.name }}</th>
+				<td>{{station.bikesAvailable}} vélos disponibles</td>
+				<td>{{station.bikesCapacity}} places maximum</td>
+			</tr>
+		{% endfor %}
+
+	</table>
+ 
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+	<h1> Villes </h1>
+
+	
+
+	<form action="{{ path_for('cities') }}" method="post" class="column2 fl">
+
+		<h2>Ajouter une ville</h2>
+
+		{% if flash.success %}
+			<div class="alert alert-success">
+				{{ flash.success }}
+			</div>
+		{% endif %}
+
+		{% if flash.error %}
+			<div class="alert alert-danger">
+				{{ flash.error }}
+			</div>
+		{% endif %}
+
+
+		{{ csrf() }}
+
+		<div class="form-group{% if flash.errors.name %} has-error{% endif %}">
+			<label for="name"> Nom de la ville </label>
+			<input type="text" class="form-control" name="name" id="name" value="{{old.name}}" required>
+
+			{% if flash.errors.name %}
+				<span class="help-block"> {{ flash.errors.name }} </span>
+			{% endif %}
+		</div>
+
+		<div class="form-group{% if flash.errors.latitude %} has-error{% endif %}">
+			<label for="latitude"> Latitude </label>
+			<input type="number" class="form-control" name="latitude" id="latitude" value="{{old.latitude}}" required>
+
+			{% if flash.errors.latitude %}
+				<span class="help-block"> {{ flash.errors.latitude }} </span>
+			{% endif %}
+		</div>
+
+		<div class="form-group{% if flash.errors.longitude %} has-error{% endif %}">
+			<label for="longitude"> Longitude </label>
+			<input type="number" class="form-control" name="longitude" id="longitude" required>
+
+			{% if flash.errors.longitude %}
+				<span class="help-block"> {{ flash.errors.longitude }} </span>
+			{% endif %}
+
+		</div>
+
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Ajouter">
+		</div>
+	</form>
+
+	<table class="column2 fr ">
+
+		{% for city in cities %}
+			<tr>
+				<th value="{{ city.id }}">{{ city.name }}</th>
+				<td>{{city.latitude}}</td>
+				<td>{{city.longitude}}</td>
+			</tr>
+		{% endfor %}
+
+	</table>
+
+ 
+{% endblock %}

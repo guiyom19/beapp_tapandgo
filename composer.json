@@ -1,0 +1,23 @@
+{
+    "name": "guiyom/tapandgo",
+    "description": "BackOffice to manage your bikes position",
+    "authors": [
+        {
+            "name": "Guillaume Exare",
+            "email": "guillaume.exare@gmail.com"
+        }
+    ],
+    "autoload":
+    {
+        "psr-4":
+        {
+            "App\\": "app/"
+        }
+    },
+    "require": {
+        "slim/slim": "^3.8",
+        "slim/twig-view": "^2.2",
+        "respect/validation": "^1.1",
+        "slim/csrf": "^0.8.1"
+    }
+}

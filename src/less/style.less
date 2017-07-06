@@ -1,0 +1,112 @@
+@blue: 		#bdd4f9;
+@brown: 	#6b5050;
+@green:		#cce590;
+@orange:	#ffdfa8;
+@darkorange:#ffc35b;
+
+@pad: 		10px;
+@margin:	25px;
+
+* {
+     font-family: 'Source Sans Pro', sans-serif;
+}
+
+body
+{
+	padding:@pad;
+}
+
+h1
+{
+	font-family: 'Source Sans Pro', sans-serif;
+	text-align: center;
+	margin-bottom:20px;
+}
+
+h2
+{
+	font-family: 'Source Sans Pro', sans-serif;
+	text-align: center;
+}
+
+nav {
+  background-color: @blue;
+  padding: @pad;
+}
+
+.welcome
+{
+	width:500px;
+	text-align : center;
+	background-color:@green;
+	padding: @pad;
+	margin:auto;
+
+	.border-radius();
+
+}
+
+.border-radius (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+form
+{
+	background-color:@orange;
+	.border-radius(15px);
+}
+
+table
+{
+	background-color:@darkorange;
+	.border-radius(15px);
+}
+
+.column2
+{
+	width: 45%;
+	padding: @pad;
+	margin: @margin;
+}
+
+td, th
+{
+	padding: @pad;
+	border-bottom: 1px solid white;
+}
+
+
+.fl
+{
+	float: left;
+}
+
+.fr
+{
+	float: right;
+}
+
+@media screen and (max-width: 1024px) {
+	.column2
+	{
+		width: 95%;
+		padding: @pad;
+		margin: @margin;
+	}
+
+	.fl
+	{
+		float: none;
+	}
+
+	.fr
+	{
+		float: none;
+	}
+}
